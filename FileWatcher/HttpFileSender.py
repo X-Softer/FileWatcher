@@ -10,8 +10,7 @@ class PostMethod(Enum):
     URL_ENCODED = 2
 
 class HttpFileSender(object):
-    """
-        Implements sending file via HTTP by other methods
+    """ Implements sending file via HTTP by other methods
     """
     logger = None
 
@@ -19,8 +18,7 @@ class HttpFileSender(object):
         self.logger = logger
 
     def send_file(self, url, file_name, method, **kwargs):
-        """
-            Send file via HTTP by other methods (multipart/form or )
+        """ Send file via HTTP by other methods (multipart/form or )
             Params:
                 Required:
                     file_name    - file_name for send
@@ -55,8 +53,7 @@ class HttpFileSender(object):
             return (False, "System Error", "")
     
     def send_file_as_multipartdata(self, url, file_name, new_file_name, add_headers, content_type):
-        """
-            Sending file as mulipart/form-data
+        """ Sending file as mulipart/form-data
         """
         if new_file_name: 
             fn = new_file_name
@@ -83,14 +80,12 @@ class HttpFileSender(object):
             return (True, "OK", r.content)
 
     def send_file_as_url_encoded(self, url, file_name, new_file_name, add_headers, content_type):
-        """
-            Sending file as application/x-www-form-urlencoded
+        """ Sending file as application/x-www-form-urlencoded
         """
         raise NameError("Method not implemented yet")
     
     def write_to_log(self, mess, type):
-        """ 
-            Write message to log by FLogger object 
+        """ Write message to log by FLogger object 
         """
         if self.logger:
             if type == LogEntryType.DEBUG:
@@ -103,8 +98,7 @@ class HttpFileSender(object):
                 self.logger.error(mess)
 
     def bug_report(self):
-        """
-            Returnts small trace of exception
+        """ Returnts small trace of exception
         """
         if sys.exc_info() != (None,None,None) : last_type, last_value, last_traceback = sys.exc_info()
         else : last_type, last_value, last_traceback = sys.last_type, sys.last_value, sys.last_traceback 

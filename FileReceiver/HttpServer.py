@@ -20,14 +20,8 @@ class FRHttpRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         """Serve a GET request.
         """
-        content = "It's works!"
-        byte_content = bytes(content, encoding = "utf-8");
-
         self.send_response(HTTPStatus.BAD_REQUEST)
-        self.send_header("Content-type", "text/plain")
-        self.send_header("Content-Length", len(byte_content))
         self.end_headers()
-        self.wfile.write(byte_content)
 
     def do_POST(self):
         """ Serve a POST request
@@ -36,17 +30,16 @@ class FRHttpRequestHandler(http.server.BaseHTTPRequestHandler):
             if self.path == '/store':
                 self.write_to_log("Request for /store", LogEntryType.INFO)
                 # store multipart/form-data file
-                r, info = self.process_post_data2()
+                r, info = self.process_post_data()
                 if not r:
-                    self.write_to_log("Request processing error {0}".format(info), LogEntryType.ERROR)
+                    self.write_to_log("Request processing error: {0}".format(info), LogEntryType.ERROR)
                     self.send_response(HTTPStatus.INTERNAL_SERVER_ERROR)
                     self.end_headers()
                 else:    
+                    self.write_to_log("Request processing result: {0}".format(info), LogEntryType.INFO)
                     self.send_response(HTTPStatus.OK)
                     self.end_headers()
-                
                 self.write_response(r, info)
-                self.write_to_log("Request processed OK", LogEntryType.INFO)
             else:
                 self.send_response(HTTPStatus.NOT_FOUND)
                 self.end_headers()
@@ -107,7 +100,7 @@ class FRHttpRequestHandler(http.server.BaseHTTPRequestHandler):
                         preline = preline[0:-1]
                     out.write(preline)
                     out.close()
-                    return (True, "File '%s' upload success!" % full_fn)
+                    return (True, "File '%s' uploaded successfully" % full_fn)
                 else:
                     out.write(preline)
                     preline = line

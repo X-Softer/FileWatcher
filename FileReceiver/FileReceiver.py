@@ -8,7 +8,7 @@ import Settings
 from FileLogger import FLogger, LogEntryType
 logger = FLogger(Settings.LOG_PATH)
 logger.need_to_print = True
-logger.log_level = LogEntryType.INFO
+#logger.log_level = LogEntryType.INFO
 logger.file_ext = "receiver.log"
 
 Handler = HttpServer.FRHttpRequestHandler
