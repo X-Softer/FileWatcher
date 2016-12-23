@@ -40,6 +40,7 @@ class FRHttpRequestHandler(http.server.BaseHTTPRequestHandler):
                     self.send_response(HTTPStatus.OK)
                     self.end_headers()
                 self.write_response(r, info)
+                self.write_to_log("Request processed", LogEntryType.INFO)
             else:
                 self.send_response(HTTPStatus.NOT_FOUND)
                 self.end_headers()

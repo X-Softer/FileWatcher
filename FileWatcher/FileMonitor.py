@@ -10,6 +10,8 @@ logger.file_ext = "monitor.log"
 
 sender = HttpFileSender.HttpFileSender(logger)
 
+os.environ['no_proxy'] = '127.0.0.1,localhost'
+
 def print_file_list (file_list, header = None):
     msg = header + ": " + ", ".join(file_list)
     logger.info(msg)
