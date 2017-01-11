@@ -242,4 +242,4 @@ ModelManifest.xml
 .fake/
 
 #pycache
-__pycache__
+__pycache__/
