@@ -3,14 +3,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>15b27b82-0854-4eb3-89d6-073c008cc8b9</ProjectGuid>
+    <ProjectGuid>eceeb274-30aa-47a7-ad68-7dc773039929</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>FileReceiver.py</StartupFile>
-    <SearchPath>..\</SearchPath>
+    <StartupFile>
+    </StartupFile>
+    <SearchPath>
+    </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>FileReceiver</Name>
-    <RootNamespace>FileReceiver</RootNamespace>
+    <Name>Common</Name>
+    <RootNamespace>Common</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,17 +22,20 @@
     <DebugSymbols>true</DebugSymbols>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="FileReceiver.py" />
-    <Compile Include="HttpServer.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Settings.py" />
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Logging\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Logging\FileLogger.py" />
+    <Compile Include="Logging\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="__init__.py" />
+  </ItemGroup>
   <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
   <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

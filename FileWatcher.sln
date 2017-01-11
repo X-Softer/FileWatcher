@@ -7,6 +7,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FileWatcher", "FileWatcher\
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FileReceiver", "FileReceiver\FileReceiver.pyproj", "{15B27B82-0854-4EB3-89D6-073C008CC8B9}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Common", "Common\Common.pyproj", "{ECEEB274-30AA-47A7-AD68-7DC773039929}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,8 @@ Global
 		{734EA472-7F1E-4195-9416-B9B103D6256A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15B27B82-0854-4EB3-89D6-073C008CC8B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15B27B82-0854-4EB3-89D6-073C008CC8B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECEEB274-30AA-47A7-AD68-7DC773039929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECEEB274-30AA-47A7-AD68-7DC773039929}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

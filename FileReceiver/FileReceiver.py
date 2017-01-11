@@ -1,11 +1,15 @@
 import http.server
 import socketserver
 import time
+import sys
+
+sys.path.insert(0, "..")
 
 import HttpServer
 import Settings
 
-from FileLogger import FLogger, LogEntryType
+from Common.Logging.FileLogger import FLogger, LogEntryType
+
 logger = FLogger(Settings.LOG_PATH)
 logger.need_to_print = True
 #logger.log_level = LogEntryType.INFO

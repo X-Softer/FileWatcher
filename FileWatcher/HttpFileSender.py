@@ -3,7 +3,7 @@ import requests
 import os
 import sys
 
-from FileLogger import LogEntryType
+from Common.Logging.FileLogger import LogEntryType
 
 class PostMethod(Enum):
     MULTIPART_FORM_DATA = 1

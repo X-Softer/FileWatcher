@@ -1,10 +1,13 @@
 import sys, os, glob, time
 
-import FileLogger
-import Settings
-import HttpFileSender
+sys.path.insert(0, "..")
 
-logger = FileLogger.FLogger(Settings.LOG_PATH)
+import Common.Logging
+
+import HttpFileSender
+import Settings
+
+logger = Common.Logging.FileLogger.FLogger(Settings.LOG_PATH)
 logger.need_to_print = True
 logger.file_ext = "monitor.log"
 
@@ -79,11 +82,6 @@ def watch_files(search_mask, on_added, on_removed, to_break = None, initial_list
 
 def send_file(source_full_fn):
     (source_dir, source_fn) = os.path.split(source_full_fn) 
-    #full_target_fn = os.path.join(Settings.REMOTE_DIR, source_fn)
-    
-    #with open(source_full_fn, mode="r") as sf:
-    #    content = sf.read()
-    #    sf.close()
 
     (res, desc, resp) =  sender.send_file(Settings.SENDING_URL, source_full_fn, HttpFileSender.PostMethod.MULTIPART_FORM_DATA)
     if res:

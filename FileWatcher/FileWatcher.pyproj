@@ -4,10 +4,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>734ea472-7f1e-4195-9416-b9b103d6256a</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
+    <ProjectHome>
+    </ProjectHome>
     <StartupFile>FileMonitor.py</StartupFile>
-    <SearchPath>
-    </SearchPath>
+    <SearchPath>..\</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>FileWatcher</Name>
@@ -22,7 +22,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="FileLogger.py" />
     <Compile Include="FileMonitor.py" />
     <Compile Include="HttpFileSender.py">
       <SubType>Code</SubType>

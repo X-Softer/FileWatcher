@@ -6,14 +6,15 @@ import os
 import sys
 
 from http import HTTPStatus
-from FileLogger import LogEntryType
+from Common.Logging.FileLogger import LogEntryType
+
 
 class FRHttpRequestHandler(http.server.BaseHTTPRequestHandler):
 
     """HTTP request handler with POST"""
 
     server_version = "PyHttpServer/" + http.server.__version__
-    store_files_path = ".";
+    store_files_path = "."
     logger = None
 
     # Just for test service
@@ -35,7 +36,7 @@ class FRHttpRequestHandler(http.server.BaseHTTPRequestHandler):
                     self.write_to_log("Request processing error: {0}".format(info), LogEntryType.ERROR)
                     self.send_response(HTTPStatus.INTERNAL_SERVER_ERROR)
                     self.end_headers()
-                else:    
+                else:
                     self.write_to_log("Request processing result: {0}".format(info), LogEntryType.INFO)
                     self.send_response(HTTPStatus.OK)
                     self.end_headers()
@@ -52,12 +53,12 @@ class FRHttpRequestHandler(http.server.BaseHTTPRequestHandler):
             self.write_response(False, "System error")
 
     def write_response(self, r, info):
-        """ Write response to out stream 
+        """ Write response to out stream
         """
         if r:
-            info = "<response><error>0</error></response>"    
+            info = "<response><error>0</error></response>"
         else:
-            info = "<response><error>1</error><description>{0}</description></response>".format(info)    
+            info = "<response><error>1</error><description>{0}</description></response>".format(info)
         self.wfile.write(bytes(info, "utf-8"))
 
     def process_post_data(self):
@@ -74,7 +75,7 @@ class FRHttpRequestHandler(http.server.BaseHTTPRequestHandler):
         remainbytes = int(self.headers['content-length'])
         line = self.rfile.readline()
         remainbytes -= len(line)
-        if not boundary in line:
+        if boundary not in line:
             return (False, "Content NOT begin with boundary")
         line = self.rfile.readline()
         remainbytes -= len(line)
@@ -84,12 +85,12 @@ class FRHttpRequestHandler(http.server.BaseHTTPRequestHandler):
         full_fn = os.path.join(self.store_files_path, fn[0])
         line = self.rfile.readline()
         remainbytes -= len(line)
-        fn2 = re.findall(r'Content-Type:.*',line.decode())
+        fn2 = re.findall(r'Content-Type:.*', line.decode())
         if fn2:
             line = self.rfile.readline()
             remainbytes -= len(line)
-        
-        with open(full_fn, 'wb') as out:                
+
+        with open(full_fn, 'wb') as out:
             preline = self.rfile.readline()
             remainbytes -= len(preline)
             while remainbytes > 0:
@@ -106,7 +107,7 @@ class FRHttpRequestHandler(http.server.BaseHTTPRequestHandler):
                     out.write(preline)
                     preline = line
 
-        return (False, "Unexpect Ends of data.")    
+        return (False, "Unexpect Ends of data.")
 
     def log_request(self, code='-', size='-'):
         """ Overrides base log_request
@@ -116,7 +117,7 @@ class FRHttpRequestHandler(http.server.BaseHTTPRequestHandler):
         self.write_to_log("'{0}' {1} {2}".format(self.requestline, str(code), str(size)), LogEntryType.DEBUG)
 
     def write_to_log(self, mess, type):
-        """ Write message to log by FLogger object 
+        """ Write message to log by FLogger object
         """
         if self.logger:
             if type == LogEntryType.DEBUG:
@@ -129,16 +130,12 @@ class FRHttpRequestHandler(http.server.BaseHTTPRequestHandler):
                 self.logger.error(mess)
 
     def bug_report(self):
-        if sys.exc_info() != (None,None,None) : last_type, last_value, last_traceback = sys.exc_info()
-        else : last_type, last_value, last_traceback = sys.last_type, sys.last_value, sys.last_traceback 
+        if sys.exc_info() != (None, None, None): last_type, last_value, last_traceback = sys.exc_info()
+        else: last_type, last_value, last_traceback = sys.last_type, sys.last_value, sys.last_traceback
         tb, descript = last_traceback, ""
-        while tb :
+        while tb:
             fname, lno = tb.tb_frame.f_code.co_filename, tb.tb_lineno
-            descript += ('\tFile "%s", line %s, in %s\n'%(fname, lno, tb.tb_frame.f_code.co_name))
+            descript += ('\tFile "%s", line %s, in %s\n' % (fname, lno, tb.tb_frame.f_code.co_name))
             tb = tb.tb_next
-        descript += ('%s : %s\n'%(last_type.__name__, last_value))
+        descript += ('%s : %s\n' % (last_type.__name__, last_value))
         return descript
-        
-            
-
-   

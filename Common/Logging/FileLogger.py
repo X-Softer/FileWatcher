@@ -2,15 +2,17 @@ from datetime import datetime
 from enum import IntEnum
 import os
 
+
 class LogEntryType(IntEnum):
     DEBUG = 0
     INFO = 1
     WARNING = 2
     ERROR = 3
 
+
 class FLogger(object):
     """Simple logger"""
-    
+
     file_ext = "log"
     need_to_print = False
     log_level = LogEntryType.DEBUG
@@ -47,8 +49,8 @@ class FLogger(object):
             file_name = "{0:%Y-%m-%d}.{1}".format(datetime.now(), self.file_ext)
             full_file_name = os.path.join(self.file_path, file_name)
 
-            if self.need_to_print :
+            if self.need_to_print:
                 print(mess_str)
-            
+
             with open(full_file_name, mode = "a") as log_f:
                 log_f.write(mess_str + "\n")
