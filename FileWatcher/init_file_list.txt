@@ -1,4 +1,0 @@
-c:\temp\1.tst
-c:\temp\2.tst
-c:\temp\3.tst
-c:\temp\4.tst

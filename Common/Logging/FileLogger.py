@@ -51,6 +51,6 @@ class FLogger(object):
 
             if self.need_to_print:
                 print(mess_str)
-
+                    
             with open(full_file_name, mode = "a") as log_f:
                 log_f.write(mess_str + "\n")
